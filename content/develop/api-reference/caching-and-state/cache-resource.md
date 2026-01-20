@@ -11,6 +11,20 @@ This page only contains information on the `st.cache_resource` API. For a deeper
 
 </Tip>
 
+<Note>
+
+Streamlit makes a best effort to hash a wide variety of objects passed to
+`st.cache_resource`. In most cases, objects are hashed successfully without
+serialization.
+
+However, if hashing fails, Streamlit falls back to a serialization-based
+hashing method that requires the object to be **pickle-able**. Objects that
+contain non-pickleable elements (such as functions) may raise errors like
+`TypeError: cannot pickle 'function' object` when this fallback path is used.
+
+</Note>
+
+
 <Autofunction function="streamlit.cache_resource" oldName="streamlit.experimental_singleton" />
 
 <Autofunction function="streamlit.cache_resource.clear" oldName="streamlit.experimental_singleton.clear" />
